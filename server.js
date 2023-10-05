@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const moment = require('moment');
-const fs   = require('fs');
 
 const port = process.env.PORT;
 const db ={
