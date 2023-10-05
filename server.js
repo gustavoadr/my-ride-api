@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const moment = require('moment');
 const fs   = require('fs');
 
-const port = 3000; //porta padrão
+const port = process.env.PORT;
 const db ={
   host     : process.env.HOST,
   port     : process.env.DB_PORT,
