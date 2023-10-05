@@ -1,4 +1,5 @@
-const app = require('express').express();
+const express = require('express');
+const app = express.express();
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
@@ -8,11 +9,11 @@ const fs   = require('fs');
 
 const port = 3000; //porta padrão
 const db ={
-  host     : '18.214.104.16',
-  port     : 3306,
-  user     : '20183026621',
-  password : '20183026621',
-  database : '20183026621'
+  host     : process.env.HOST,
+  port     : process.env.DB_PORT,
+  user     : process.env.USER,
+  password : process.env.PASSWORD,
+  database : process.env.DATABASE
 }
 
 app.use(bodyParser.urlencoded({extended: 'false'}));
@@ -26,8 +27,8 @@ app.use(cors());
 app.use(express.json());	
 app.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
 
-const privateKey  = fs.readFileSync('./private.key', 'utf8');
-const publicKey  = fs.readFileSync('./public.key', 'utf8');
+const privateKey = process.env.PRIVATE_KEY;
+const publicKey = process.env.PUBLIC_KEY;
 
 const middlewareValidarJWT = (req, res, next) => {
     const jwtToken = req.headers["authorization"];
